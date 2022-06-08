@@ -1,13 +1,18 @@
-import * as React from 'react'
-import type { RenderOptions } from '@testing-library/react'
-import { render } from '@testing-library/react'
-import { ChakraProvider, theme } from '@chakra-ui/react'
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import { CitiesProvider } from './cities.context'
+import { render, RenderOptions } from '@testing-library/react'
 
-const AllProviders = ({ children }: { children?: React.ReactNode }) => (
-  <ChakraProvider theme={theme}>{children}</ChakraProvider>
-)
+const AllTheProviders: React.FC = ({ children }) => {
+  return (
+    <BrowserRouter>
+      <CitiesProvider>{children}</CitiesProvider>
+    </BrowserRouter>
+  )
+}
 
-const customRender = (ui: React.ReactElement, options?: RenderOptions) =>
-  render(ui, { wrapper: AllProviders, ...options })
+const customRender = (ui: JSX.Element, options?: Omit<RenderOptions, 'wrapper'>) =>
+  render(ui, { wrapper: AllTheProviders, ...options })
 
+export * from '@testing-library/react'
 export { customRender as render }
