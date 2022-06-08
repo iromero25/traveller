@@ -17,7 +17,7 @@ export const convertArrayIntoHash = (cities: City[]): Record<string, City> => {
   }, {})
 }
 
-export const getCitiesArray = (hashTable: Record<string, City>, citiesToExtract: string[]): City[] => {
+export const getCitiesArray = (hashTable: Record<string, City>, citiesToExtract: Set<string>): City[] => {
   const citiesArray: City[] = []
   citiesToExtract.forEach(cityName => {
     const key = lowerCaseKey(cityName)

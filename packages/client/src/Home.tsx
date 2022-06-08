@@ -4,7 +4,7 @@ import { Container, InputRightElement, Input, Heading, InputGroup, IconButton, V
 
 import type { FC } from 'react'
 import DataTable from './DataTable'
-import { getCitiesArray } from './utils'
+import { getCitiesArray, lowerCaseKey } from './utils'
 
 import { CitiesContext } from './cities.context'
 
@@ -16,8 +16,9 @@ export const Home: FC = () => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => setFilter(event.target.value)
 
   const filterCities = () => {
-    const citiesToSearchArray = filter !== '' ? filter.split(',') : []
-    const filteredCities = getCitiesArray(cities, citiesToSearchArray)
+    const citiesToSearchArray = filter !== '' ? filter.split(',').map(lowerCaseKey) : []
+    const citiesToSearchSet = new Set<string>(citiesToSearchArray)
+    const filteredCities = getCitiesArray(cities, citiesToSearchSet)
 
     setDisplayedCities(filteredCities)
   }
