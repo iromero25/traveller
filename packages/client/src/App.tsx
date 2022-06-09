@@ -21,7 +21,7 @@ const fonts = {
 }
 
 export const App: FC = () => {
-  const { cities, setCities } = useContext(CitiesContext)
+  const { setCities } = useContext(CitiesContext)
 
   useEffect(() => {
     // Fetch all  cities using the REST Api. When finished, the whole data

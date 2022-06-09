@@ -16,7 +16,7 @@ const DataTable: FC = () => {
     return () => {
       setIsUpdating(false)
     }
-  }, [displayedCities])
+  }, [])
 
   const updateCity = (cityToUpdate: City) => {
     const { id, name, visited, wishlist } = cityToUpdate
